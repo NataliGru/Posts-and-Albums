@@ -1,7 +1,7 @@
-import { createRoot } from 'react-dom/client';
-const Root = require('./Root.jsx')
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-createRoot(document.getElementById('root'))
-  .render(
-    <Root />,
-  );
+import { createRoot } from 'react-dom/client';
+import { Root } from './Root.jsx';
+
+createRoot(document.getElementById('root')).render(<Root />);

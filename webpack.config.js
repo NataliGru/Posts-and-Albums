@@ -1,4 +1,5 @@
 // webpack.config.js
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -21,10 +22,16 @@ module.exports = {
       },
     ],
   },
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'public'),
-    },
-    port: 3000,
-  },
+  // devServer: {
+  //   static: {
+  //     directory: path.join(__dirname, 'public'),
+  //   },
+  //   port: 3000,
+  // },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      filename: 'index.html',
+    }),
+  ],
 };

@@ -1,19 +1,13 @@
-const {
-  HashRouter,
-  // Navigate,
-  Route,
-  Routes,
-} = require('react-router-dom');
+import React from 'react';
+import { HashRouter, Route, Routes } from 'react-router-dom';
+import { App } from './App.jsx';
 
-const Root = () => (
+export const Root = () => (
   <HashRouter>
     <Routes>
-      <Route path="/" >
+      <Route path="/" element={<App />} >
       </Route>
     </Routes>
   </HashRouter>
 );
 
-module.exports = {
-  Root
-};
