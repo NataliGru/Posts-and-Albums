@@ -1,37 +1,19 @@
+import { client } from './utils/fetchClient';
+
 const API_URL = 'https://jsonplaceholder.typicode.com';
 
-export function getUsers() {
-  return fetch(`${API_URL}/users`)
-    .then((res) => res.json())
-    .catch(() => ({
-      Response: 'False',
-      Error: 'unexpected error',
-    }));
-}
+export const getUsers = () => {
+  return client.get('/users');
+};
 
-export function getUserAlbums(userId) {
-  return fetch(`${API_URL}/albums?userId=${userId}`)
-    .then((res) => res.json())
-    .catch(() => ({
-      Response: 'False',
-      Error: 'unexpected error',
-    }));
-}
+export const getUserPosts = (userId) => {
+  return client.get(`/posts?userId=${userId}`);
+};
 
-export function getUserPosts(userId) {
-  return fetch(`${API_URL}/posts?userId=${userId}`)
-    .then((res) => res.json())
-    .catch(() => ({
-      Response: 'False',
-      Error: 'unexpected error',
-    }));
-}
+export const getUserAlbums = (userId) => {
+  return client.get(`/albums?userId=${userId}`);
+};
 
-export function getPostComments(postId) {
-  return fetch(`${API_URL}/comments?postId=${postId}`)
-    .then((res) => res.json())
-    .catch(() => ({
-      Response: 'False',
-      Error: 'unexpected error',
-    }));
-}
+export const getComments = (postId) => {
+  return client.get(`/comments?postId=${postId}`);
+};
