@@ -1,10 +1,10 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 
 export const App = () => {
   return (
-    <div className='container'>
+    <div className="container">
       <Outlet />
     </div>
-  )
-}
+  );
+};

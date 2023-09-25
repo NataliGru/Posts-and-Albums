@@ -14,6 +14,6 @@ export const getUserAlbums = (userId) => {
   return client.get(`/albums?userId=${userId}`);
 };
 
-export const getComments = (postId) => {
+export const getPostComments = (postId) => {
   return client.get(`/comments?postId=${postId}`);
 };

@@ -24,11 +24,20 @@ export const getUsersWithQuery = ({
 
   if (sort) {
     preparedUsers = [...preparedUsers].sort((u1, u2) => {
-      return u1[sort].localeCompare(u2[sort]);
+      switch (sort) {
+        case 'name':
+          return u1[sort].localeCompare(u2[sort]);
+
+        case 'id':
+          return u1[sort] - u2[sort];
+
+        default:
+          return 0;
+      }
     });
   }
 
-  if (order === 'desc') {
+  if (order === 'descend') {
     preparedUsers.reverse();
   }
 

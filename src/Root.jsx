@@ -1,17 +1,31 @@
 import React from 'react';
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { App } from './App.jsx';
-import { HomePage } from './pages/HomePage.jsx';
+import { UsersPage } from './pages/UsersPage.jsx';
 import { NotFoundPage } from './pages/NotFoundPage.jsx';
-import { UsersList } from './components/UsersList.jsx';
+import { AlbumsList } from './components/AlbumsList.jsx';
+import { UserContentPage } from './pages/UserContentPage.jsx';
+import { PostsList } from './components/PostsList.jsx';
 
 export const Root = () => (
   <HashRouter>
     <Routes>
-      <Route path="/" element={<App />}>
-        <Route index element={<HomePage usersList={<UsersList />} />} />
-        <Route path="*" element={<NotFoundPage />} />
+      <Route path="/" element={<App />} />
+      <Route index element={<UsersPage />} />
+
+      <Route path="users/:userId?" element={<UserContentPage />}>
+        <Route
+          path="posts"
+          element={<PostsList />}
+        />
+
+        <Route
+          path="albums"
+          element={<AlbumsList />}
+        />
       </Route>
+
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   </HashRouter>
 );

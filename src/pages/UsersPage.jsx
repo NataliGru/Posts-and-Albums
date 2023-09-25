@@ -1,11 +1,15 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import './UsersPage.scss';
+
 import { getUsers } from '../api';
 import { useSearchParams } from 'react-router-dom';
 import { getUsersWithQuery } from '../utils/getUsersWithQuery';
 import { UsersList } from '../components/UsersList.jsx';
+import { UserSearchAndSort } from '../components/UserSearchAndSort.jsx';
 
-export const HomePage = () => {
+export const UsersPage = () => {
   const [users, setUsers] = useState([]);
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -22,12 +26,11 @@ export const HomePage = () => {
     getUsers()
       .then((fetchedUsers) => {
         setUsers(fetchedUsers);
-        console.log(fetchedUsers)
+        console.log(fetchedUsers);
       })
       .catch(() => setError(true))
       .finally(() => setIsLoading(false));
-  }, [])
-  console.log(users)
+  }, []);
 
   const visibleUsers = useMemo(
     () =>
@@ -37,17 +40,24 @@ export const HomePage = () => {
         sort,
         order,
       }),
-    [users, searchParams],
+    [users, query, sort, order,]
   );
 
   return (
     <>
-      <h1 className="title">Home Page</h1>
+      <h1 className="title">Users Page</h1>
 
-      <div data-cy="UsersList">
-        <p className="title">Users:</p>
-        <UsersList users={visibleUsers} />
-      </div>
+      <UserSearchAndSort />
+
+      {visibleUsers.length !== 0 && (
+        <>
+          <div className="UsersList">
+            <UsersList
+              users={visibleUsers}
+            />
+          </div>
+        </>
+      )}
     </>
   );
 };
