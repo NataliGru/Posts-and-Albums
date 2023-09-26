@@ -1,0 +1,62 @@
+@import "../../styles/utils/variabels.scss";
+@import "../../styles/utils/mixins.scss";
+.card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 16px;
+  width: $card-width;
+  height: 140px;
+
+  text-align: center;
+
+  border: 1px solid $card-border-color;
+  border-radius: 5px;
+  transition: color, transform;
+  @include animation-property;
+
+  &__title {
+    margin: 10px;
+
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 14px;
+    color: $main-text-color;
+  }
+
+  &:hover {
+    transform: scale(1.2);
+  }
+
+  &:hover &__title {
+    color: #34568b;
+  }
+
+  &__link {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: $button-height;
+    margin-top: auto;
+
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    color: #fff;
+
+    border: 1px solid $accent-color;
+    border-radius: 5px;
+
+    background-color: $accent-color;
+    transition: color;
+    @include animation-property;
+
+    &:hover {
+      background-color: #fff;
+      color: $accent-color;
+    }
+  }
+}

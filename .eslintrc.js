@@ -36,8 +36,5 @@ export default {
           ignoreComments: true,
         },
       ],
-      'jsx-a11y/label-has-associated-control': ["error", {
-        assert: "either",
-      }],
     },
 }

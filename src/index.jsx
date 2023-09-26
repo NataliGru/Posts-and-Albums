@@ -1,7 +1,5 @@
+import React from 'react';
 import { createRoot } from 'react-dom/client';
-const Root = require('./Root.jsx')
+import { Root } from './Root.jsx';
 
-createRoot(document.getElementById('root'))
-  .render(
-    <Root />,
-  );
+createRoot(document.getElementById('root')).render(<Root />);

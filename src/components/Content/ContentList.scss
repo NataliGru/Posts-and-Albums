@@ -1,0 +1,27 @@
+@import "../../styles/utils/variabels.scss";
+@import "../../styles/utils/mixins.scss";
+
+.content-container {
+  box-sizing: border-box;
+  --column-count: 2;
+  display: grid;
+  grid-template-columns: repeat(var(--column-count), auto);
+  width: 100%;
+  padding: 20px;
+
+  row-gap: 30px;
+  column-gap: 30px;
+  justify-content: center;
+}
+
+@media (min-width: 488px) {
+  .content-container {
+    --column-count: 3;
+  }
+}
+
+@media (min-width: 768px) {
+  .content-container {
+    --column-count: 3;
+  }
+}
