@@ -1,63 +1,66 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import './UsersPage.scss';
+import { useSearchParams } from 'react-router-dom';
 
 import { getUsers } from '../api';
-import { useSearchParams } from 'react-router-dom';
+
 import { getUsersWithQuery } from '../utils/getUsersWithQuery';
-import { UsersList } from '../components/UsersList.jsx';
-import { UserSearchAndSort } from '../components/UserSearchAndSort.jsx';
+import { UserSearchAndSort } from '../components/UserSearch/UserSearchAndSort.jsx';
+import { UserCard } from '../components/User/UserCard.jsx';
+import { Loader } from '../components/Loader/Loader.jsx';
+
+import './UsersPage.scss';
 
 export const UsersPage = () => {
   const [users, setUsers] = useState([]);
-
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
 
   const [searchParams] = useSearchParams();
 
   const query = searchParams.get('query') || '';
-  const sort = searchParams.get('sort') || '';
   const order = searchParams.get('order') || '';
 
   useEffect(() => {
     setIsLoading(true);
-    setError(false);
 
     getUsers()
       .then((fetchedUsers) => {
         setUsers(fetchedUsers);
-        console.log(fetchedUsers);
       })
-      .catch(() => setError(true))
+      .catch((error) => error)
       .finally(() => setIsLoading(false));
   }, []);
 
-  const visibleUsers = useMemo(
-    () =>
-      getUsersWithQuery({
-        users,
-        query,
-        sort,
-        order,
-      }),
-    [users, query, sort, order,]
-  );
+  const visibleUsers = useMemo(() => {
+    const usersWithQuery = getUsersWithQuery({
+      users,
+      query,
+      order,
+    });
+    return usersWithQuery;
+  }, [users, query, order]);
 
   return (
     <>
-      <h1 className="title">Users Page</h1>
+      <p className="title">Users Page</p>
 
-      <UserSearchAndSort />
+      {users.length === 0 && isLoading && <Loader />}
+      {!isLoading && <UserSearchAndSort />}
 
-      {visibleUsers.length !== 0 && (
+      {
         <>
-          <div className="UsersList">
-            <UsersList
-              users={visibleUsers}
-            />
-          </div>
+          {visibleUsers.length !== 0 && !isLoading && (
+            <div className="usersList">
+              {visibleUsers.map((user) => (
+                <UserCard user={user} key={user.id} />
+              ))}
+            </div>
+          )}
+
+          {query !== '' && visibleUsers.length === 0 && !isLoading && (
+            <p className="no-results">No results found.</p>
+          )}
         </>
-      )}
+      }
     </>
   );
 };

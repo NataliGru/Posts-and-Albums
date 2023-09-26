@@ -1,11 +1,11 @@
 import React from 'react';
-import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
+
 import { App } from './App.jsx';
 import { UsersPage } from './pages/UsersPage.jsx';
 import { NotFoundPage } from './pages/NotFoundPage.jsx';
-import { AlbumsList } from './components/AlbumsList.jsx';
 import { UserContentPage } from './pages/UserContentPage.jsx';
-import { PostsList } from './components/PostsList.jsx';
+import { ContentList } from './components/Content/ContentList.jsx';
 
 export const Root = () => (
   <HashRouter>
@@ -14,15 +14,7 @@ export const Root = () => (
       <Route index element={<UsersPage />} />
 
       <Route path="users/:userId?" element={<UserContentPage />}>
-        <Route
-          path="posts"
-          element={<PostsList />}
-        />
-
-        <Route
-          path="albums"
-          element={<AlbumsList />}
-        />
+        <Route path=":contentType" element={<ContentList />} />
       </Route>
 
       <Route path="*" element={<NotFoundPage />} />

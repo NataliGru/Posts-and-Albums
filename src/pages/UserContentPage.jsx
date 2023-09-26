@@ -1,15 +1,13 @@
 import React from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
-import { Navigation } from '../components/Navigation.jsx';
+import { Outlet } from 'react-router-dom';
+
+import { Navigation } from '../components/Navigation/Navigation.jsx';
 
 export const UserContentPage = () => {
   return (
-    <div className="container">
-      <div className="content-navigation">
-        <Navigation />
-      </div>
-
+    <>
+      <Navigation />
       <Outlet />
-    </div>
+    </>
   );
 };

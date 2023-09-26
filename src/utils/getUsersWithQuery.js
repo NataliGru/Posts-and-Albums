@@ -7,7 +7,6 @@ function normalized(string) {
 export const getUsersWithQuery = ({
   users,
   query,
-  sort,
   order,
 }) => {
   let preparedUsers = users;
@@ -22,20 +21,9 @@ export const getUsersWithQuery = ({
     });
   }
 
-  if (sort) {
-    preparedUsers = [...preparedUsers].sort((u1, u2) => {
-      switch (sort) {
-        case 'name':
-          return u1[sort].localeCompare(u2[sort]);
-
-        case 'id':
-          return u1[sort] - u2[sort];
-
-        default:
-          return 0;
-      }
-    });
-  }
+  preparedUsers = [...preparedUsers].sort((u1, u2) => (
+    u1.name.localeCompare(u2.name)),
+  );
 
   if (order === 'descend') {
     preparedUsers.reverse();

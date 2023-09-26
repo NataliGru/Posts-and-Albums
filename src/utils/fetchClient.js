@@ -1,5 +1,11 @@
 const BASE_URL = 'https://jsonplaceholder.typicode.com';
 
+function wait(delay) {
+  return new Promise(resolve => {
+    setTimeout(resolve, delay);
+  });
+}
+
 
 function request(
   url,
@@ -17,13 +23,11 @@ function request(
   }
 
   // for a demo purpose we emulate a delay to see if Loaders work
-  return fetch(BASE_URL + url, options)
-    .then(response => response.json());
+  return wait(300)
+  .then(() => fetch(BASE_URL + url, options))
+  .then(response => response.json());
 }
 
 export const client = {
   get: (url) => request(url),
-  // post: (url, data) => request(url, 'POST', data),
-  // patch: (url, data) => request(url, 'PATCH', data),
-  // delete: (url) => request(url, 'DELETE'),
 };
