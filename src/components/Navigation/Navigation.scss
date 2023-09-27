@@ -1,7 +1,5 @@
-@import "../../styles/utils/variabels.scss";
-@import "../../styles/utils/mixins.scss";
-
-
+@import '../../styles/utils/variables.scss';
+@import '../../styles/utils/mixins.scss';
 
 .navbar {
   display: flex;
@@ -23,18 +21,13 @@
   transition: color, transform;
   @include animation-property;
 
-  &:hover{
-    color:$accent-color;
+  &:hover {
+    color: $accent-color;
     transform: scale(1.2);
   }
 
-  &.active  {
+  &.active {
     color: #fff;
-  background-color: $accent-color;
-
+    background-color: $accent-color;
   }
 }
-
-
-
-
