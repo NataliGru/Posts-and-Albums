@@ -16,6 +16,8 @@
   @include animation-property;
 
   &__title {
+    margin: 10px 0;
+    height: 45px;
     font-size: 14px;
     font-weight: 700;
     line-height: 14px;
@@ -28,6 +30,11 @@
     font-weight: 500;
     line-height: 14px;
     color: $main-text-color;
+  }
+
+  &__img {
+    display: block;
+    margin: 0 auto 10px;
   }
 
   &:hover {
